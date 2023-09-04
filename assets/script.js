@@ -63,3 +63,48 @@ rightArrow.addEventListener("click", function () {
 
 // Initialisation de l'image avec la première diapositive
 changeImage(currentIndex);
+
+// BULLET SLIDER
+
+// Fonction pour ajouter les bullet points
+function addBulletPoints() {
+    const dotsContainer = document.querySelector(".dots");
+
+    // Supprimer tous les points existants (au cas où la fonction est appelée à nouveau)
+    dotsContainer.innerHTML = '';
+
+    // Ajouter un point pour chaque image dans le tableau slides
+    slides.forEach((slide, index) => {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        
+        // Ajouter une classe spécifique pour le premier point (la première diapositive)
+        if (index === 0) {
+            dot.classList.add("dot_selected");
+        }
+
+        // Ajouter un gestionnaire d'événement au point pour changer d'image lors du clic
+        dot.addEventListener("click", function () {
+            changeImage(index);
+            updateBulletPoints(index);
+        });
+
+        dotsContainer.appendChild(dot);
+    });
+}
+
+// Appeler la fonction pour ajouter les bullet points
+addBulletPoints();
+
+// Fonction pour mettre à jour les bullet points en fonction de l'index de l'image actuelle
+function updateBulletPoints(currentIndex) {
+    const dots = document.querySelectorAll(".dot");
+
+    // Réinitialiser tous les bullet points
+    dots.forEach((dot) => {
+        dot.classList.remove("dot_selected");
+    });
+
+    // Mettre en surbrillance le bullet point correspondant à l'image actuelle
+    dots[currentIndex].classList.add("dot_selected");
+}
