@@ -29,7 +29,7 @@ const carouselImage = document.querySelector(".banner-img");
 const leftArrow = document.querySelector(".arrow_left");
 const rightArrow = document.querySelector(".arrow_right");
 
-// Fonction pour changer l'image en fonction de l'index
+// Fonction pour changer l'image et le texte en fonction de l'index
 function changeImage(index) {
     carouselImage.src = `./assets/images/slideshow/${slides[index].image}`;
     document.querySelector("#banner p").innerHTML = slides[index].tagLine;
@@ -87,6 +87,7 @@ function addBulletPoints() {
         dot.addEventListener("click", function () {
             changeImage(index);
             updateBulletPoints(index);
+			console.log(`Clic sur le point ${index}`);
         });
 
         dotsContainer.appendChild(dot);
