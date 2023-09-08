@@ -19,7 +19,7 @@ const slides = [
 
 // FLECHES SLIDER
 
-// Déclartion de la variable pour suivre l'index de l'image actuelle
+// Déclaration de la variable pour suivre l'index de l'image actuelle
 let currentIndex = 0;
 
 // Obtention de la référence à l'image du carrousel
@@ -65,11 +65,11 @@ rightArrow.addEventListener("click", function () {
 changeImage(currentIndex);
 
 // BULLET SLIDER
-// Obtention de la référence au conteneur de dots
-const dotsContainer = document.querySelector(".dots");
 
 // Fonction pour ajouter les bullet points
 function addBulletPoints() {
+    const dotsContainer = document.querySelector(".dots");
+
     // Supprimer tous les points existants (au cas où la fonction est appelée à nouveau)
     dotsContainer.innerHTML = '';
 
@@ -78,18 +78,20 @@ function addBulletPoints() {
         const dot = document.createElement("div");
         dot.classList.add("dot");
         
+        // Ajouter une classe spécifique pour le premier point (la première diapositive)
+        if (index === 0) {
+            dot.classList.add("dot_selected");
+        }
+
         // Ajouter un gestionnaire d'événement au point pour changer d'image lors du clic
         dot.addEventListener("click", function () {
             changeImage(index);
             updateBulletPoints(index);
-            console.log(`Clic sur le point ${index}`);
+			console.log(`Clic sur le point ${index}`);
         });
 
         dotsContainer.appendChild(dot);
     });
-
-    // Mettre en surbrillance le bullet point correspondant à l'image actuelle
-    updateBulletPoints(currentIndex);
 }
 
 // Appeler la fonction pour ajouter les bullet points
